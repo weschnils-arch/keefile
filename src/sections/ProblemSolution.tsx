@@ -41,10 +41,10 @@ export function ProblemSolution() {
 
             {/* Problem Text */}
             <div
-              className={`p-6 rounded-xl border-l-4 ${
+              className={`p-6 rounded-xl ${
                 isLight
-                  ? 'bg-white border-destructive shadow-card'
-                  : 'bg-card border-destructive shadow-dark-card'
+                  ? 'bg-white shadow-card'
+                  : 'bg-card shadow-dark-card'
               }`}
             >
               <div className="flex items-start gap-4">
@@ -98,10 +98,10 @@ export function ProblemSolution() {
 
             {/* Solution Text */}
             <div
-              className={`p-6 rounded-xl border-l-4 ${
+              className={`p-6 rounded-xl ${
                 isLight
-                  ? 'bg-white border-[#D4A574] shadow-card'
-                  : 'bg-card border-[#00D9FF] shadow-dark-card'
+                  ? 'bg-white shadow-card'
+                  : 'bg-card shadow-dark-card'
               }`}
             >
               <div className="flex items-start gap-4">

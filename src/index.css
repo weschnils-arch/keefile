@@ -57,13 +57,13 @@
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 16%;
     --popover-foreground: 0 0% 100%;
-    --primary: 189 100% 55%; /* #00D9FF Bright Cyan */
+    --primary: 0 0% 100%; /* #FFFFFF White */
     --primary-foreground: 0 0% 10%;
     --secondary: 0 0% 29%; /* #4A4A4A Dark Gray */
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 23%; /* #3A3A3A */
     --muted-foreground: 0 0% 70%;
-    --accent: 189 100% 55%;
+    --accent: 0 0% 100%;
     --accent-foreground: 0 0% 10%;
     --destructive: 0 70% 65%; /* #FF6B6B Red */
     --destructive-foreground: 0 0% 100%;
@@ -143,6 +143,11 @@
     @apply scale-[1.02];
     filter: brightness(0.95);
   }
+
+  .dark .btn-primary:hover {
+    background-color: #B3ECFF;
+    filter: none;
+  }
   
   .btn-primary:focus-visible {
     @apply ring-2 ring-offset-2;
@@ -162,6 +167,12 @@
   .btn-secondary:hover {
     @apply scale-[1.02];
     background-color: hsl(var(--primary) / 0.1);
+  }
+
+  .dark .btn-secondary:hover {
+    background-color: rgba(179, 236, 255, 0.15);
+    border-color: #B3ECFF;
+    color: #B3ECFF;
   }
   
   .btn-secondary:focus-visible {

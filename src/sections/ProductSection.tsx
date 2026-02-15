@@ -76,8 +76,13 @@ export function ProductSection() {
             {/* Description */}
             <p className="body-text text-muted-foreground">
               {isLight
-                ? (t('product.light.description') as string)
-                : (t('product.dark.description') as string)}
+                ? (t('hero.light.description.line1') as string)
+                : (t('hero.dark.description.line1') as string)}
+            </p>
+            <p className="body-text text-muted-foreground">
+              {isLight
+                ? (t('hero.light.description.line2') as string)
+                : (t('hero.dark.description.line2') as string)}
             </p>
 
             {/* Benefits List */}

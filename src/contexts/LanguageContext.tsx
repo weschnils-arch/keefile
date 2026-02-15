@@ -25,14 +25,14 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.preorder': 'Jetzt vorbestellen',
 
     // ─── Hero: Light Mode (Frauen-Fokus) ───
-    'hero.light.headline': 'Deine Nägel verdienen das Beste',
-    'hero.light.subheadline': 'Die nachhaltige 4-in-1 Nagelfeile, die ein Leben lang hält',
+    'hero.light.headline': 'The Future of Manicure',
+    'hero.light.subheadline': 'Perfect Results. Zero Focus. For Everyone.',
     'hero.light.description.line1': 'Entdecke Keefile — vier präzise Feiloberflächen in einem einzigen, wunderschönen Werkzeug. Handgefertigt in Deutschland aus nachhaltigen Materialien.',
     'hero.light.description.line2': 'Kein Verschleiß, kein Plastikabfall, keine Kompromisse. Weil Selbstpflege auch Planetenpflege sein sollte.',
 
     // ─── Hero: Dark Mode (Männer-Fokus) ───
-    'hero.dark.headline': 'Präzision, die du spürst',
-    'hero.dark.subheadline': 'Vier Oberflächen. Ein Werkzeug. Null Kompromisse.',
+    'hero.dark.headline': 'The Future of Manicure',
+    'hero.dark.subheadline': 'Perfect Results. Zero Focus. For Everyone.',
     'hero.dark.description.line1': 'Keefile vereint deutsche Ingenieurskunst mit kompromissloser Materialqualität. Vier spezialisierte Feiloberflächen in einem unverwüstlichen Werkzeug',
     'hero.dark.description.line2': '— konstruiert für Perfektion, gebaut für die Ewigkeit.',
 
@@ -44,14 +44,14 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.badge.warranty': 'Lebenslange Garantie',
     'hero.badge.engineering': 'Deutsche Ingenieurskunst',
     'hero.badge.excellence': 'Technische Exzellenz',
-    'hero.badge.durability': 'Lebenslange Haltbarkeit',
+    'hero.badge.durability': 'Lebenslange Garantie',
 
     // ─── Produkt-Sektion ───
     'product.sectionTitle': 'Was ist Keefile?',
-    'product.light.headline': 'Ein Werkzeug. Vier Oberflächen. Unendliche Möglichkeiten.',
+    'product.light.headline': 'Transforming the Future of Nail Care Through Innovation',
     'product.light.description': 'Wo andere Nagelfeilen nach Wochen versagen, fängt Keefile erst an. Unser 4-in-1 Design bietet dir für jeden Nagel die perfekte Oberfläche — von grob bis ultra-fein. Nachhaltig gefertigt, atemberaubend schön und gebaut, um dich ein Leben lang zu begleiten.',
 
-    'product.dark.headline': 'Ingenieurskunst trifft Funktion',
+    'product.dark.headline': 'Transforming the Future of Nail Care Through Innovation',
     'product.dark.description': 'Vier präzisionsgeschliffene Oberflächen, jede für einen spezifischen Anwendungsbereich optimiert. Keefile ist kein gewöhnliches Pflegeprodukt — es ist ein Werkzeug, das nach den höchsten Standards deutscher Ingenieurskunst gefertigt wurde. Ein Werkzeug, vier Funktionen, unbegrenzte Lebensdauer.',
 
     'product.benefits': JSON.stringify([
@@ -224,14 +224,14 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.preorder': 'Pre-Order Now',
 
     // ─── Hero: Light Mode (Women-focused) ───
-    'hero.light.headline': 'Your Nails Deserve Better',
-    'hero.light.subheadline': 'The sustainable 4-in-1 nail file that lasts a lifetime',
+    'hero.light.headline': 'The Future of Manicure',
+    'hero.light.subheadline': 'Perfect Results. Zero Focus. For Everyone.',
     'hero.light.description.line1': 'Meet Keefile — four precision filing surfaces in one beautiful, sustainable tool. Handcrafted in Germany from materials that never wear out.',
     'hero.light.description.line2': 'No plastic waste, no replacements, no compromise. Because self-care should also mean caring for the planet.',
 
     // ─── Hero: Dark Mode (Men-focused) ───
-    'hero.dark.headline': 'Precision You Can Feel',
-    'hero.dark.subheadline': 'Four surfaces. One tool. Zero compromise.',
+    'hero.dark.headline': 'The Future of Manicure',
+    'hero.dark.subheadline': 'Perfect Results. Zero Focus. For Everyone.',
     'hero.dark.description.line1': 'Keefile combines German engineering with uncompromising material quality. Four specialized filing surfaces in one indestructible tool',
     'hero.dark.description.line2': '— precision-engineered for perfection, built to last indefinitely.',
 
@@ -243,14 +243,14 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.badge.warranty': 'Lifetime Warranty',
     'hero.badge.engineering': 'German Engineering',
     'hero.badge.excellence': 'Technical Excellence',
-    'hero.badge.durability': 'Lifetime Durability',
+    'hero.badge.durability': 'Lifetime Warranty',
 
     // ─── Product Section ───
     'product.sectionTitle': 'What is Keefile?',
-    'product.light.headline': 'One Tool. Four Surfaces. Endless Possibilities.',
+    'product.light.headline': 'Transforming the Future of Nail Care Through Innovation',
     'product.light.description': 'Where other nail files fail after weeks, Keefile is just getting started. Our 4-in-1 design gives you the perfect surface for every nail — from shaping to high-gloss polishing. Sustainably crafted, stunningly beautiful, and built to be the last nail file you ever buy.',
 
-    'product.dark.headline': 'Where Engineering Meets Function',
+    'product.dark.headline': 'Transforming the Future of Nail Care Through Innovation',
     'product.dark.description': 'Four precision-ground surfaces, each optimized for a specific application. Keefile isn\'t an ordinary grooming product — it\'s a tool built to the highest standards of German engineering. One tool, four functions, unlimited lifespan.',
 
     'product.benefits': JSON.stringify([
