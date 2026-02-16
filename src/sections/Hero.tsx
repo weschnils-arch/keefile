@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCheckout } from '@/contexts/CheckoutContext';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -12,6 +13,7 @@ export function Hero() {
   const { t } = useLanguage();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
+  const { openCheckout } = useCheckout();
   const isLight = theme === 'light';
   const [productColor, setProductColor] = useState<ProductColor>(isLight ? 'bronze' : 'black');
 
@@ -201,7 +203,7 @@ export function Hero() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Button
-              onClick={() => scrollToSection('#contact')}
+              onClick={openCheckout}
               className="btn-primary group"
               size="lg"
             >

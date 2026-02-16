@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useCheckout } from '@/contexts/CheckoutContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export function ContactCTA() {
   const { theme } = useTheme();
+  const { openCheckout } = useCheckout();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
   const isLight = theme === 'light';
@@ -107,9 +108,9 @@ export function ContactCTA() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <Link to="/checkout" className="btn-accent">
+            <button onClick={openCheckout} className="btn-accent">
               Secure Your Pair →
-            </Link>
+            </button>
           </div>
 
           {/* Trust line */}

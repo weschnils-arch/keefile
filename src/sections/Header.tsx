@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Menu, Sun, Moon, Globe } from 'lucide-react';
+import { Menu, Sun, Moon, Globe, ShoppingBag } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCheckout } from '@/contexts/CheckoutContext';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
+  const { openCheckout } = useCheckout();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -121,9 +123,18 @@ export function Header() {
                   )}
                 </button>
 
-                {/* CTA Button */}
+                {/* Cart Icon */}
+                <button
+                  onClick={openCheckout}
+                  className="p-2 rounded-md hover:bg-muted transition-colors focus-visible:ring-2 focus-visible:ring-offset-2"
+                  aria-label="Open cart"
+                >
+                  <ShoppingBag className="w-5 h-5" aria-hidden="true" />
+                </button>
+
+                {/* CTA Button — opens checkout */}
                 <Button
-                  onClick={() => scrollToSection('#contact')}
+                  onClick={openCheckout}
                   className="btn-primary text-sm"
                 >
                   {t('nav.preorder') as string}
@@ -189,7 +200,7 @@ export function Header() {
                     </div>
 
                     <Button
-                      onClick={() => scrollToSection('#contact')}
+                      onClick={() => { setIsOpen(false); openCheckout(); }}
                       className="btn-primary w-full"
                     >
                       {t('nav.preorder') as string}

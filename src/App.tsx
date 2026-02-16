@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { CheckoutProvider } from '@/contexts/CheckoutContext';
 import { Header } from '@/sections/Header';
 import { Hero } from '@/sections/Hero';
 import { ProductSection } from '@/sections/ProductSection';
@@ -12,40 +12,32 @@ import { Team } from '@/sections/Team';
 import { ContactCTA } from '@/sections/ContactCTA';
 import { FAQ } from '@/sections/FAQ';
 import { Footer } from '@/sections/Footer';
-import Checkout from '@/pages/Checkout';
-
-function LandingPage() {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Header />
-      <main id="main-content" role="main">
-        <Hero />
-        <ProductSection />
-        <ProblemSolution />
-        <Benefits />
-        <CaseStudies />
-        <Process />
-        <Team />
-        <ContactCTA />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>
-  );
-}
+import { CheckoutPanel } from '@/components/CheckoutPanel';
 
 function App() {
   return (
-    <BrowserRouter>
-      <ThemeProvider>
-        <LanguageProvider>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </LanguageProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <LanguageProvider>
+        <CheckoutProvider>
+          <div className="min-h-screen bg-background text-foreground">
+            <Header />
+            <main id="main-content" role="main">
+              <Hero />
+              <ProductSection />
+              <ProblemSolution />
+              <Benefits />
+              <CaseStudies />
+              <Process />
+              <Team />
+              <ContactCTA />
+              <FAQ />
+            </main>
+            <Footer />
+            <CheckoutPanel />
+          </div>
+        </CheckoutProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 
