@@ -5,8 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Gotham', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        gotham: ['Gotham', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        gotham: ['Gotham', 'Inter', 'sans-serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,24 +53,9 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom Keefile Colors
-        'rose-gold': '#D4A574',
-        'rose-gold-hover': '#C49060',
-        'rose-gold-light': '#E8D4C4',
-        'sage-green': '#A8B8A8',
-        'cream': '#F5F3F0',
-        'charcoal': '#3A3A3A',
-        'cyan': '#00D9FF',
-        'cyan-hover': '#00B8D4',
-        'cyan-dark': '#0099BB',
-        'anthracite': '#1A1A1A',
-        'dark-gray': '#2A2A2A',
       },
-      /* Spacing: Using Tailwind defaults (4px grid)
-       * Key mapping to spec: 1=4px, 2=8px, 3=12px, 4=16px, 6=24px,
-       * 8=32px, 10=40px, 12=48px, 16=64px, 20=80px, 24=96px
-       */
       borderRadius: {
+        '3xl': '24px',
         xl: "calc(var(--radius) + 4px)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -78,6 +64,10 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        'glass': '0 8px 32px rgba(0, 0, 0, 0.08)',
+        'glass-hover': '0 12px 40px rgba(0, 0, 0, 0.15)',
+        'glass-dark': '0 8px 32px rgba(0, 0, 0, 0.12)',
+        'glass-dark-hover': '0 12px 40px rgba(0, 0, 0, 0.3)',
         'card': '0 4px 20px -4px rgba(0, 0, 0, 0.1)',
         'card-hover': '0 10px 40px -10px rgba(0, 0, 0, 0.15)',
         'dark-card': '0 4px 20px -4px rgba(0, 0, 0, 0.3)',
@@ -97,32 +87,20 @@ module.exports = {
           "20%,50%": { opacity: "0" },
         },
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "0%": { opacity: "0", transform: "translateY(40px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "slide-in-right": {
-          "0%": { opacity: "0", transform: "translateX(20px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
-        "fade-in-up": "fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in-up": "fade-in-up 0.8s ease forwards",
         "fade-in": "fade-in 0.4s ease-out forwards",
-        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
-      },
-      transitionDuration: {
-        '200': '200ms',
-        '300': '300ms',
-        '400': '400ms',
-        '500': '500ms',
-        '600': '600ms',
       },
     },
   },

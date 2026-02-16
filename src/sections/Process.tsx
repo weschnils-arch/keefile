@@ -1,136 +1,129 @@
-import { Package, ClipboardCheck, Truck, Gift, Award } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
-const icons = [Package, ClipboardCheck, Truck, Gift, Award];
-
-interface ProcessStep {
+interface Step {
+  number: string;
   title: string;
   description: string;
 }
 
+const steps: Step[] = [
+  {
+    number: '01',
+    title: 'Choose Your Colors',
+    description:
+      'Pick the combination for your two Keefiles — Bronze, Black, or one of each.',
+  },
+  {
+    number: '02',
+    title: 'Secure Your Offer',
+    description:
+      'Complete your order through our encrypted, GDPR-compliant checkout.',
+  },
+  {
+    number: '03',
+    title: 'Receive a Tool for Life',
+    description:
+      'Precision-manufactured in Germany. Quality-tested. Delivered to your door.',
+  },
+];
+
 export function Process() {
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
-
   const isLight = theme === 'light';
-
-  const stepsKey = isLight ? 'process.light.steps' : 'process.dark.steps';
-  const stepsRaw = t(stepsKey) as string;
-  let steps: ProcessStep[] = [];
-  try {
-    steps = JSON.parse(stepsRaw);
-  } catch {
-    steps = [];
-  }
 
   return (
     <section
       ref={ref}
-      className="section-padding bg-background"
+      id="process"
+      className="section-padding relative overflow-hidden bg-background"
       aria-labelledby="process-heading"
     >
-      <div className="container-max">
-        {/* Header */}
-        <div
-          className={`text-center max-w-2xl mx-auto mb-12 md:mb-16 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <span className="label-text text-primary block mb-4">
-            {t('process.sectionTitle') as string}
-          </span>
-          <h2
-            id="process-heading"
-            className="heading-2 text-foreground"
-          >
-            {isLight
-              ? (t('process.light.title') as string)
-              : (t('process.dark.title') as string)}
-          </h2>
-        </div>
-
-        {/* Process Steps */}
-        <div
-          className="relative max-w-4xl mx-auto"
-          role="list"
-          aria-label="Order process steps"
-        >
-          {/* Connector Line - Desktop */}
+      <div className="container-max relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left — Image */}
           <div
-            className="absolute top-12 left-0 right-0 h-0.5 hidden lg:block"
-            aria-hidden="true"
+            className={`transition-all duration-700 ${
+              isVisible
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 -translate-x-8'
+            }`}
           >
-            <div
-              className={`h-full ${
-                isLight ? 'bg-[#D4A574]/20' : 'bg-[#00D9FF]/20'
-              }`}
-            />
+            <div className="relative rounded-2xl overflow-hidden">
+              <img
+                src="https://placehold.co/800x600/1a1a1a/666?text=4-in-1+Surface+Diagram"
+                alt="Keefile 4-in-1 surface diagram showing four precision filing grits"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+              {/* Overlay gradient */}
+              <div
+                className={`absolute inset-0 ${
+                  isLight
+                    ? 'bg-gradient-to-tr from-[#B76E79]/10 to-transparent'
+                    : 'bg-gradient-to-tr from-[#C9A96E]/10 to-transparent'
+                }`}
+                aria-hidden="true"
+              />
+            </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
-            {steps.map((step, index) => {
-              const Icon = icons[index] || Package;
-              return (
-                <div
-                  key={index}
-                  className={`relative flex flex-col items-center text-center transition-all duration-500 ${
-                    isVisible
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${(index + 1) * 100}ms` }}
-                  role="listitem"
-                >
-                  {/* Step Number & Icon */}
+          {/* Right — Steps */}
+          <div
+            className={`transition-all duration-700 delay-200 ${
+              isVisible
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 translate-x-8'
+            }`}
+          >
+            {/* Header */}
+            <div className="mb-10">
+              <span className="kicker block mb-4">How It Works</span>
+              <h2
+                id="process-heading"
+                className="heading-2 text-foreground"
+              >
+                Three Steps. That&rsquo;s It.
+              </h2>
+            </div>
+
+            {/* Steps Container */}
+            <div className="glass p-8 md:p-10">
+              <div className="space-y-8" role="list" aria-label="Process steps">
+                {steps.map((step, index) => (
                   <div
-                    className={`relative w-24 h-24 rounded-full flex items-center justify-center mb-5 z-10 ${
-                      isLight
-                        ? 'bg-white shadow-card'
-                        : 'bg-card shadow-dark-card'
+                    key={step.number}
+                    className={`flex gap-5 md:gap-6 transition-all duration-500 ${
+                      isVisible
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-6'
                     }`}
+                    style={{ transitionDelay: `${(index + 2) * 150}ms` }}
+                    role="listitem"
                   >
-                    <div
-                      className={`w-16 h-16 rounded-full flex items-center justify-center ${
-                        isLight
-                          ? 'bg-[#D4A574]/10'
-                          : 'bg-[#00D9FF]/10'
-                      }`}
-                    >
-                      <Icon
-                        className={`w-7 h-7 ${
-                          isLight ? 'text-[#D4A574]' : 'text-[#00D9FF]'
-                        }`}
-                        aria-hidden="true"
-                      />
-                    </div>
-
-                    {/* Step Number Badge */}
+                    {/* Step Number */}
                     <span
-                      className={`absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold ${
-                        isLight
-                          ? 'bg-[#D4A574] text-white'
-                          : 'bg-[#00D9FF] text-[#1A1A1A]'
-                      }`}
+                      className="flex-shrink-0 text-4xl md:text-5xl font-bold leading-none mt-1"
+                      style={{ color: 'var(--kf-accent)', opacity: 0.35 }}
+                      aria-hidden="true"
                     >
-                      {index + 1}
+                      {step.number}
                     </span>
+
+                    {/* Step Content */}
+                    <div>
+                      <h3 className="heading-3 text-foreground mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="body-text text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    {step.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground max-w-[200px]">
-                    {step.description}
-                  </p>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

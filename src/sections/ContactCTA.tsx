@@ -1,262 +1,125 @@
-import { Package, UserCheck, Mail, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Button } from '@/components/ui/button';
-
-const icons = [Package, UserCheck, Mail];
-
-interface ContactStep {
-  title: string;
-  description: string;
-}
 
 export function ContactCTA() {
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
   const isLight = theme === 'light';
-
-  const stepsKey = isLight ? 'contact.steps.light' : 'contact.steps.dark';
-  const stepsRaw = t(stepsKey) as string;
-  let steps: ContactStep[] = [];
-  try {
-    steps = JSON.parse(stepsRaw);
-  } catch {
-    steps = [];
-  }
-
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact-form');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section
       ref={ref}
       id="contact"
-      className="section-padding bg-background"
+      className="relative section-spacing overflow-hidden"
       aria-labelledby="contact-heading"
     >
-      <div className="container-max">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <img
+          src={
+            isLight
+              ? 'https://placehold.co/1400x900/f5f0eb/ccc?text=Lifestyle+Friends+Keefile'
+              : 'https://placehold.co/1400x900/1a1a1a/333?text=Lifestyle+Friends+Keefile'
+          }
+          alt=""
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+        {/* Gradient overlay */}
         <div
-          className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`absolute inset-0 ${
+            isLight
+              ? 'bg-gradient-to-b from-white/80 via-white/60 to-white/80'
+              : 'bg-gradient-to-b from-black/80 via-black/60 to-black/80'
+          }`}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container-max flex justify-center">
+        <div
+          className={`glass w-[90%] md:w-[50%] p-8 md:p-12 lg:p-16 text-center transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          {/* Section Label */}
-          <span className="label-text text-primary block mb-4">
-            {t('contact.sectionTitle') as string}
+          {/* Kicker */}
+          <span
+            className={`kicker block mb-4 transition-all duration-700 delay-100 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            LIMITED EARLY BIRD OFFER
           </span>
 
           {/* Headline */}
           <h2
             id="contact-heading"
-            className="heading-2 text-foreground mb-6"
-          >
-            {isLight
-              ? (t('contact.light.headline') as string)
-              : (t('contact.dark.headline') as string)}
-          </h2>
-
-          {/* Description */}
-          <p className="body-text text-muted-foreground max-w-2xl mx-auto mb-12">
-            {isLight
-              ? (t('contact.light.description') as string)
-              : (t('contact.dark.description') as string)}
-          </p>
-
-          {/* Steps */}
-          <div
-            className="grid sm:grid-cols-3 gap-6 md:gap-8 mb-12"
-            role="list"
-            aria-label="Order steps"
-          >
-            {steps.map((step, index) => {
-              const Icon = icons[index] || Package;
-              return (
-                <div
-                  key={index}
-                  className={`flex flex-col items-center transition-all duration-500 ${
-                    isVisible
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${(index + 1) * 100}ms` }}
-                  role="listitem"
-                >
-                  {/* Icon */}
-                  <div
-                    className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 ${
-                      isLight ? 'bg-[#D4A574]/10' : 'bg-[#00D9FF]/10'
-                    }`}
-                  >
-                    <Icon
-                      className={`w-8 h-8 ${
-                        isLight ? 'text-[#D4A574]' : 'text-[#00D9FF]'
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    {step.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground">
-                    {step.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* CTA Button */}
-          <Button
-            onClick={scrollToContact}
-            className="btn-primary group text-lg px-8 py-4"
-            size="lg"
-          >
-            {t('contact.cta') as string}
-            <ArrowRight
-              className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
-              aria-hidden="true"
-            />
-          </Button>
-        </div>
-      </div>
-
-      {/* Contact Form Section */}
-      <div id="contact-form" className="mt-20 pt-10">
-        <div className="container-max">
-          <div
-            className={`max-w-xl mx-auto p-6 rounded-2xl transition-all duration-700 ${
-              isLight
-                ? 'bg-white shadow-card'
-                : 'bg-card shadow-dark-card'
+            className={`heading-2 text-foreground mb-3 transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <h3 className="text-2xl font-bold text-foreground text-center mb-6">
-              {t('contact.cta') as string}
-            </h3>
+            Share the Perfection.
+          </h2>
 
-            <form
-              className="space-y-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert('Thank you for your pre-order! We will contact you soon.');
-              }}
-            >
-              {/* Name */}
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-foreground mb-2"
-                >
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 transition-colors ${
-                    isLight
-                      ? 'border-border focus:border-[#D4A574] focus:ring-[#D4A574]/20'
-                      : 'border-border focus:border-[#00D9FF] focus:ring-[#00D9FF]/20'
-                  }`}
-                  placeholder="Your name"
-                />
-              </div>
+          {/* Sub-headline */}
+          <p
+            className={`text-lg md:text-xl font-medium text-foreground/70 mb-8 transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            Buy One. Get One Free. For Your Friend.
+          </p>
 
-              {/* Email */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-foreground mb-2"
-                >
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 transition-colors ${
-                    isLight
-                      ? 'border-border focus:border-[#D4A574] focus:ring-[#D4A574]/20'
-                      : 'border-border focus:border-[#00D9FF] focus:ring-[#00D9FF]/20'
-                  }`}
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              {/* Package Selection */}
-              <div>
-                <label
-                  htmlFor="package"
-                  className="block text-sm font-medium text-foreground mb-2"
-                >
-                  Package *
-                </label>
-                <select
-                  id="package"
-                  name="package"
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 transition-colors ${
-                    isLight
-                      ? 'border-border focus:border-[#D4A574] focus:ring-[#D4A574]/20'
-                      : 'border-border focus:border-[#00D9FF] focus:ring-[#00D9FF]/20'
-                  }`}
-                >
-                  <option value="">Select a package</option>
-                  <option value="single-light">Single Pack - Light</option>
-                  <option value="single-dark">Single Pack - Dark</option>
-                  <option value="double-light">Double Pack - Light</option>
-                  <option value="double-dark">Double Pack - Dark</option>
-                </select>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-foreground mb-2"
-                >
-                  Message (Optional)
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className={`w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:ring-2 transition-colors resize-none ${
-                    isLight
-                      ? 'border-border focus:border-[#D4A574] focus:ring-[#D4A574]/20'
-                      : 'border-border focus:border-[#00D9FF] focus:ring-[#00D9FF]/20'
-                  }`}
-                  placeholder="Any special requests..."
-                />
-              </div>
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                className="btn-primary w-full"
-                size="lg"
-              >
-                {t('contact.cta') as string}
-              </Button>
-
-              <p className="text-xs text-muted-foreground text-center">
-                * Required fields. We respect your privacy.
-              </p>
-            </form>
+          {/* Price */}
+          <div
+            className={`mb-2 transition-all duration-700 delay-[400ms] ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            <span className="price-display">€55.59</span>
           </div>
+
+          {/* Price context */}
+          <p
+            className={`text-sm md:text-base font-semibold text-foreground/60 mb-6 transition-all duration-700 delay-[450ms] ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            Two Keefiles. One Price. Save 50%.
+          </p>
+
+          {/* Body */}
+          <p
+            className={`body-text text-muted-foreground max-w-md mx-auto mb-8 transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            For a limited time, secure two Keefiles for the price of one. One for you. One for
+            someone who deserves the best. This is the only Early Bird offer — once it is gone, it
+            is gone.
+          </p>
+
+          {/* CTA Button */}
+          <div
+            className={`mb-6 transition-all duration-700 delay-[600ms] ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            <Link to="/checkout" className="btn-accent">
+              Secure Your Pair →
+            </Link>
+          </div>
+
+          {/* Trust line */}
+          <p
+            className={`text-xs md:text-sm text-muted-foreground tracking-wide transition-all duration-700 delay-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            Free shipping · Secure checkout · Lifetime warranty
+          </p>
         </div>
       </div>
     </section>

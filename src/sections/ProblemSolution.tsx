@@ -1,139 +1,148 @@
-import { X, Check } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export function ProblemSolution() {
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
   const isLight = theme === 'light';
 
+  const dangerColor = isLight ? '#FF3B30' : '#FF453A';
+  const successColor = isLight ? '#34C759' : '#30D158';
+
   return (
     <section
       ref={ref}
-      className="section-padding bg-muted/30"
+      id="problem"
+      className="relative section-spacing overflow-hidden"
       aria-labelledby="problem-heading"
     >
-      <div className="container-max">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Problem Section */}
+      {/* Background Gradient Orbs */}
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+        {/* Red orb behind Problem card */}
+        <div
+          className="orb w-[500px] h-[500px] top-[10%] left-[5%]"
+          style={{
+            background: isLight
+              ? 'rgba(255, 59, 48, 0.08)'
+              : 'rgba(255, 69, 58, 0.1)',
+          }}
+        />
+        {/* Green orb behind Solution card */}
+        <div
+          className="orb w-[500px] h-[500px] bottom-[10%] right-[5%]"
+          style={{
+            background: isLight
+              ? 'rgba(52, 199, 89, 0.08)'
+              : 'rgba(48, 209, 88, 0.1)',
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container-max">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {/* Problem Card */}
           <div
-            className={`space-y-6 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`glass p-6 md:p-8 lg:p-10 flex flex-col transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            {/* Section Label */}
-            <span className="label-text text-destructive">
-              {t('problem.sectionTitle') as string}
+            {/* Image */}
+            <div className="rounded-2xl overflow-hidden mb-6">
+              <img
+                src={
+                  isLight
+                    ? 'https://placehold.co/600x400/f5f0eb/999?text=Disposable+Nail+Files'
+                    : 'https://placehold.co/600x400/1a1a1a/666?text=Disposable+Nail+Files'
+                }
+                alt="Disposable nail files illustrating the throwaway cycle"
+                className="w-full h-48 md:h-56 object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Kicker */}
+            <span
+              className={`kicker block mb-4 transition-all duration-700 delay-100 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+              style={{ color: dangerColor }}
+            >
+              THE PROBLEM
             </span>
 
             {/* Headline */}
             <h2
               id="problem-heading"
-              className="heading-2 text-foreground"
+              className={`heading-2 text-foreground mb-4 transition-all duration-700 delay-200 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
             >
-              {isLight
-                ? (t('problem.light.headline') as string)
-                : (t('problem.dark.headline') as string)}
+              The Throwaway Cycle.
             </h2>
 
-            {/* Problem Text */}
-            <div
-              className={`p-6 rounded-xl ${
-                isLight
-                  ? 'bg-white shadow-card'
-                  : 'bg-card shadow-dark-card'
+            {/* Body */}
+            <p
+              className={`body-text text-muted-foreground transition-all duration-700 delay-300 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center">
-                  <X className="w-5 h-5 text-destructive" aria-hidden="true" />
-                </span>
-                <p className="body-text text-foreground/80">
-                  {isLight
-                    ? (t('problem.light.text') as string)
-                    : (t('problem.dark.text') as string)}
-                </p>
-              </div>
-            </div>
-
-            {/* Problem Image */}
-            <div className="relative rounded-xl overflow-hidden">
-              <img
-                src="/images/kf-RM_0002 1.webp"
-                alt="Close-up showing traditional nail file problems"
-                className="w-full h-48 md:h-64 object-cover"
-                loading="lazy"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"
-                aria-hidden="true"
-              />
-            </div>
+              Cheap materials. Inconsistent grit. Zero durability. Conventional nail files are
+              designed to be replaced — not to perform. They deliver uneven results and create
+              unnecessary waste. This is not a user problem. It is a design flaw.
+            </p>
           </div>
 
-          {/* Solution Section */}
+          {/* Solution Card */}
           <div
-            className={`space-y-6 transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`glass p-6 md:p-8 lg:p-10 flex flex-col transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            {/* Section Label */}
+            {/* Image */}
+            <div className="rounded-2xl overflow-hidden mb-6">
+              <img
+                src={
+                  isLight
+                    ? 'https://placehold.co/600x400/f5f0eb/999?text=Keefile+Premium+Display'
+                    : 'https://placehold.co/600x400/1a1a1a/666?text=Keefile+Premium+Display'
+                }
+                alt="Keefile premium display showing the permanent upgrade"
+                className="w-full h-48 md:h-56 object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Kicker */}
             <span
-              className={`label-text ${
-                isLight ? 'text-[#D4A574]' : 'text-[#00D9FF]'
+              className={`kicker block mb-4 transition-all duration-700 delay-300 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
+              style={{ color: successColor }}
             >
-              {t('solution.sectionTitle') as string}
+              THE SOLUTION
             </span>
 
             {/* Headline */}
-            <h2 className="heading-2 text-foreground">
-              {isLight
-                ? (t('solution.light.headline') as string)
-                : (t('solution.dark.headline') as string)}
-            </h2>
-
-            {/* Solution Text */}
-            <div
-              className={`p-6 rounded-xl ${
-                isLight
-                  ? 'bg-white shadow-card'
-                  : 'bg-card shadow-dark-card'
+            <h2
+              className={`heading-2 text-foreground mb-4 transition-all duration-700 delay-[400ms] ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
-              <div className="flex items-start gap-4">
-                <span
-                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                    isLight ? 'bg-[#D4A574]/10' : 'bg-[#00D9FF]/10'
-                  }`}
-                >
-                  <Check
-                    className={`w-5 h-5 ${
-                      isLight ? 'text-[#D4A574]' : 'text-[#00D9FF]'
-                    }`}
-                    aria-hidden="true"
-                  />
-                </span>
-                <p className="body-text text-foreground/80">
-                  {isLight
-                    ? (t('solution.light.text') as string)
-                    : (t('solution.dark.text') as string)}
-                </p>
-              </div>
-            </div>
+              The Permanent Upgrade.
+            </h2>
 
-            {/* Solution Image */}
-            <div className="relative rounded-xl overflow-hidden">
-              <img
-                src={isLight ? '/images/10.webp' : '/images/7.webp'}
-                alt="Keefile solution showing premium design"
-                className="w-full h-48 md:h-64 object-contain bg-gradient-to-br from-transparent to-muted/30"
-                loading="lazy"
-              />
-            </div>
+            {/* Body */}
+            <p
+              className={`body-text text-muted-foreground transition-all duration-700 delay-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
+              One tool. Four precision surfaces. Zero degradation. Keefile replaces a drawer full
+              of disposables with a single, indestructible instrument engineered for consistent
+              perfection — use after use, year after year, decade after decade.
+            </p>
           </div>
         </div>
       </div>

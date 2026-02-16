@@ -1,132 +1,113 @@
-import { Check } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
+interface Stat {
+  value: string;
+  label: string;
+}
+
+const stats: Stat[] = [
+  { value: '3+', label: 'Years' },
+  { value: '50+', label: 'Iterations' },
+  { value: '4', label: 'Precision Grits' },
+  { value: '∞', label: 'Lifetime' },
+];
 
 export function Team() {
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
-
   const isLight = theme === 'light';
-
-  const valuesKey = isLight ? 'team.values' : 'team.values.dark';
-  const valuesRaw = t(valuesKey) as string;
-  let values: string[] = [];
-  try {
-    values = JSON.parse(valuesRaw);
-  } catch {
-    values = [];
-  }
 
   return (
     <section
       ref={ref}
       id="about"
-      className="section-padding bg-muted/30"
+      className="section-padding relative overflow-hidden"
       aria-labelledby="team-heading"
     >
-      <div className="container-max">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Content */}
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <img
+          src="https://placehold.co/1200x700/1a1a1a/333?text=German+Precision+Workshop"
+          alt=""
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+        {/* Overlay */}
+        <div
+          className={`absolute inset-0 ${
+            isLight
+              ? 'bg-[#FAFAFA]/85 backdrop-blur-sm'
+              : 'bg-[#0A0A0A]/85 backdrop-blur-sm'
+          }`}
+        />
+      </div>
+
+      <div className="container-max relative z-10">
+        <div className="flex justify-center">
+          {/* Glass Container */}
           <div
-            className={`space-y-6 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            className={`glass w-full lg:w-[65%] p-8 md:p-12 lg:p-14 transition-all duration-700 ${
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
             }`}
           >
-            {/* Section Label */}
-            <span className="label-text text-primary">
-              {t('team.sectionTitle') as string}
-            </span>
+            {/* Kicker */}
+            <span className="kicker block mb-4">About Us</span>
 
             {/* Headline */}
             <h2
               id="team-heading"
-              className="heading-2 text-foreground"
+              className="heading-2 text-foreground mb-6"
             >
-              {isLight
-                ? (t('team.light.headline') as string)
-                : (t('team.dark.headline') as string)}
+              Three Years. Zero Compromise.
             </h2>
 
-            {/* Description */}
-            <p className="body-text text-muted-foreground">
-              {isLight
-                ? (t('team.light.description') as string)
-                : (t('team.dark.description') as string)}
+            {/* Body */}
+            <p className="body-text text-muted-foreground leading-relaxed mb-10 max-w-[600px]">
+              Behind Keefile are three years of relentless development, countless
+              prototypes, and an obsession with getting every detail right. Our
+              team of engineers and material scientists did not stop until every
+              surface, every edge, and every curve met the highest standard. The
+              result is not just a nail file. It is a statement.
             </p>
 
-            {/* Values List */}
-            <ul
-              className="grid sm:grid-cols-2 gap-4 pt-4"
-              role="list"
-              aria-label="Company values"
+            {/* Stats Row */}
+            <div
+              className={`glass p-6 md:p-8 transition-all duration-700 delay-300 ${
+                isVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-6'
+              }`}
             >
-              {values.map((value, index) => (
-                <li
-                  key={index}
-                  className="flex items-center gap-3"
-                  style={{ animationDelay: `${(index + 1) * 100}ms` }}
-                >
-                  <span
-                    className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${
-                      isLight ? 'bg-[#D4A574]/10' : 'bg-[#00D9FF]/10'
+              <div
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+                role="list"
+                aria-label="Key statistics"
+              >
+                {stats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className={`text-center transition-all duration-500 ${
+                      isVisible
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-4'
                     }`}
+                    style={{ transitionDelay: `${(index + 3) * 100}ms` }}
+                    role="listitem"
                   >
-                    <Check
-                      className={`w-4 h-4 ${
-                        isLight ? 'text-[#D4A574]' : 'text-[#00D9FF]'
-                      }`}
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="text-foreground font-medium">{value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Image */}
-          <div
-            className={`relative transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-            }`}
-          >
-            <div className="relative">
-              {/* Background Decoration */}
-              <div
-                className={`absolute -inset-4 rounded-3xl opacity-20 ${
-                  isLight ? 'bg-[#D4A574]/20' : 'bg-[#00D9FF]/20'
-                }`}
-                aria-hidden="true"
-              />
-
-              {/* Main Image */}
-              <div
-                className={`relative rounded-2xl overflow-hidden ${
-                  isLight
-                    ? 'bg-white shadow-card'
-                    : 'bg-card shadow-dark-card'
-                }`}
-              >
-                <img
-                  src={isLight ? '/images/casebronze 2.webp' : '/images/casedark 1.webp'}
-                  alt="Keefile premium case design"
-                  className="w-full h-auto object-contain p-8"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Floating Badge */}
-              <div
-                className={`absolute -bottom-4 -left-4 px-6 py-3 rounded-xl ${
-                  isLight
-                    ? 'bg-[#D4A574] text-white shadow-lg'
-                    : 'bg-[#00D9FF] text-[#1A1A1A] shadow-lg'
-                }`}
-              >
-                <span className="text-sm font-bold">3+ Years</span>
-                <span className="block text-xs opacity-80">Development</span>
+                    <span
+                      className="block text-3xl md:text-4xl lg:text-5xl font-bold leading-none mb-2"
+                      style={{ color: 'var(--kf-accent)' }}
+                    >
+                      {stat.value}
+                    </span>
+                    <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-medium">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
